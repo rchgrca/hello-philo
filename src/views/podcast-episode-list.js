@@ -24,6 +24,7 @@ function PodcastEpisodeList(props) {
               key={ep.title} className={styles.episodeListItem} alt={ep.title}
               onClick={() => props.loadPodcastEpisode(ep)}
             >
+              <div className={styles.episodeAddButton} title="Add to playlist"><i className="fa fa-plus-square" aria-hidden="true"></i></div>
               <div>
                 {ep.title}
               </div>

@@ -4,9 +4,9 @@ import styles from '../styles/podcast-list-item';
 
 function PodcastListItem(props) {
   const { title, slug, image = [] } = props;
-  const imgSrc = image[0] ? image[0].url : null;
+  const imgSrc = image[0] ? image[0].url : props["itunes:image"][0].$.href;
   const imgAlt = image[0] ? image[0].title : null;
-
+  console.log(imgSrc)
   return (
     <li className={styles.podcastListItem} >
       <Link className={styles.itemLink} to={`/${slug}`} data-title={title}>

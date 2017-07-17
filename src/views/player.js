@@ -12,7 +12,7 @@ function Player(props) {
   return (
     <div className={styles.playerContainer}>
       <div className={styles.player}>
-        <span className={styles.playerNowPlaying}>{podcastTitle} - {title}</span>
+        <div className={styles.playerNowPlaying}>{podcastTitle} - {title}</div>
         {audioEl}
       </div>
     </div>

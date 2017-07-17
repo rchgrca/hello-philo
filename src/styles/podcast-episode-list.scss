@@ -15,4 +15,11 @@
   border: 1px solid white;
   color: white;
   cursor: pointer;
+  position: relative;
+}
+
+.episodeAddButton {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
