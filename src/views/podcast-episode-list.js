@@ -21,10 +21,10 @@ function PodcastEpisodeList(props) {
         {
           formattedEps.map((ep) => (
             <li
-              key={ep.title} className={styles.episodeListItem} alt={ep.title}
+              key={ep.title} className={styles.episodeListItem} title={ep.title}
               onClick={() => props.loadPodcastEpisode(ep)}
             >
-              <div className={styles.episodeAddButton} title="Add to playlist"><i className="fa fa-plus-square" aria-hidden="true"></i></div>
+              <div className={styles.episodeAddButton} title="Add to playlist" onClick={addToPlaylist}><i className="fa fa-plus-square" aria-hidden="true"></i></div>
               <div>
                 {ep.title}
               </div>
@@ -34,6 +34,11 @@ function PodcastEpisodeList(props) {
       </ul>
     </div>
   );
+}
+
+function addToPlaylist(e){
+    e.preventDefault();
+    console.log("RICH",e)
 }
 PodcastEpisodeList.propTypes = {
   loadPodcastEpisode: PropTypes.func.isRequired,
