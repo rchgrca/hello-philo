@@ -22,3 +22,16 @@
   * state.player.title: "JSJ 269 Reusable React and JavaScript Components with Cory House"
   * state.player.src: "https://media.devchat.tv//js-jabber/JSJ_269_Reusable_React_and_JavaScript_Components_House_mixdown.mp3"
   * state.player.podcastId: "All-JavaScript-Podcasts-by-Devchattv"
+
+# Approach
+  * fix a few UI issues to get acquire more context
+  * create "Add to playlist" button
+  * add click event to "Add to playlist" button, insure it does not fire "play episode" event
+  * create "ADD_TO_PLAYLIST" action
+  * create "ADD_TO_PLAYLIST" reducer
+  * create "DELETE_FROM_PLAYLIST" action
+  * create "DELETE_FROM_PLAYLIST" reducer
+  * create "Playlist" link in sidebar navigation
+  * creaet "Playlist" view/component
+  * add UI polish
+    * add

@@ -14,6 +14,20 @@ function PodcastEpisodeList(props) {
     podcastId: routeParams.podcastId,
   }));
 
+  const addToPlaylistData = {
+      fonticon: "fa-plus-square",
+      title: "Add to playlist",
+      handler: addToPlaylist
+  }
+
+  const deleteFromPlaylistData = {
+      fonticon: "fa-minus-square",
+      title: "Delete from playlist",
+      handler: deleteFromPlaylist
+  }
+
+  const playlistData = (true) ? addToPlaylistData : deleteFromPlaylistData
+
   return (
     <div className={styles.episodeListContainer}>
       <h1>{podcastTitle}</h1>
@@ -22,10 +36,9 @@ function PodcastEpisodeList(props) {
           formattedEps.map((ep) => (
             <li
               key={ep.title} className={styles.episodeListItem} title={ep.title}
-              onClick={() => props.loadPodcastEpisode(ep)}
             >
-              <div className={styles.episodeAddButton} title="Add to playlist" onClick={addToPlaylist}><i className="fa fa-plus-square" aria-hidden="true"></i></div>
-              <div>
+              <div className={styles.episodeAddButton}><i className={`fa ${playlistData.fonticon}`} aria-hidden="true" title={playlistData.title} onClick={playlistData.handler}></i></div>
+              <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
                 {ep.title}
               </div>
             </li>
@@ -38,8 +51,14 @@ function PodcastEpisodeList(props) {
 
 function addToPlaylist(e){
     e.preventDefault();
-    console.log("RICH",e)
+    console.log("addToPlaylist",e)
 }
+
+function deleteFromPlaylist(e){
+    e.preventDefault();
+    console.log("deleteFromPlaylist",e)
+}
+
 PodcastEpisodeList.propTypes = {
   loadPodcastEpisode: PropTypes.func.isRequired,
 };
