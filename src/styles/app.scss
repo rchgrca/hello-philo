@@ -1,10 +1,18 @@
 @import 'variables';
 
 :global {
+  html {
+    height: 100%;
+  }
+
   body {
     margin: 0;
     padding: 0;
-    background: black;
+    font-family: $philo-font;
+    height: 100%;
+    background: linear-gradient(to bottom,$header-background,$philo-navy-blue);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 
     a {
       text-decoration: none;
