@@ -28,10 +28,11 @@
   * create "Add to playlist" button
   * add click event to "Add to playlist" button, insure it does not fire "play episode" event
   * create "ADD_TO_PLAYLIST" action
-  * create "ADD_TO_PLAYLIST" reducer
   * create "DELETE_FROM_PLAYLIST" action
+  * create store 'playlist' item
+  * create "ADD_TO_PLAYLIST" reducer
   * create "DELETE_FROM_PLAYLIST" reducer
   * create "Playlist" link in sidebar navigation
-  * creaet "Playlist" view/component
+  * create "Playlist" view/component
   * add UI polish
     * add

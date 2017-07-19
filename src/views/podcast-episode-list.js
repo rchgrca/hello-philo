@@ -14,19 +14,7 @@ function PodcastEpisodeList(props) {
     podcastId: routeParams.podcastId,
   }));
 
-  const addToPlaylistData = {
-      fonticon: "fa-plus-square",
-      title: "Add to playlist",
-      handler: addToPlaylist
-  }
-
-  const deleteFromPlaylistData = {
-      fonticon: "fa-minus-square",
-      title: "Delete from playlist",
-      handler: deleteFromPlaylist
-  }
-
-  const playlistData = (true) ? addToPlaylistData : deleteFromPlaylistData
+  const playlistData = (true) ? getAddToPlaylistData() : getDeleteFromPlaylistData();
 
   return (
     <div className={styles.episodeListContainer}>
@@ -34,10 +22,8 @@ function PodcastEpisodeList(props) {
       <ul className={styles.episodeList}>
         {
           formattedEps.map((ep) => (
-            <li
-              key={ep.title} className={styles.episodeListItem} title={ep.title}
-            >
-              <div className={styles.episodeAddButton}><i className={`fa ${playlistData.fonticon}`} aria-hidden="true" title={playlistData.title} onClick={playlistData.handler}></i></div>
+            <li key={ep.title} className={styles.episodeListItem} title={ep.title}>
+              <div className={styles.episodeButton}><i className={`fa ${playlistData.fonticon}`} aria-hidden="true" title={playlistData.title} onClick={() => playlistData.handler(ep)}></i></div>
               <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
                 {ep.title}
               </div>
@@ -49,14 +35,28 @@ function PodcastEpisodeList(props) {
   );
 }
 
-function addToPlaylist(e){
-    e.preventDefault();
-    console.log("addToPlaylist",e)
+function addToPlaylist(ep){
+    console.log("addToPlaylist", ep)
 }
 
-function deleteFromPlaylist(e){
-    e.preventDefault();
-    console.log("deleteFromPlaylist",e)
+function deleteFromPlaylist(ep){
+    console.log("deleteFromPlaylist", ep)
+}
+
+function getAddToPlaylistData(){
+    return {
+        fonticon: "fa-plus-square",
+        title: "Add to playlist",
+        handler: addToPlaylist
+    }
+}
+
+function getDeleteFromPlaylistData(){
+    return {
+        fonticon: "fa-minus-square",
+        title: "Delete from playlist",
+        handler: deleteFromPlaylist
+    }
 }
 
 PodcastEpisodeList.propTypes = {
