@@ -21,9 +21,9 @@ function PodcastEpisodeList(props) {
       <h1>{podcastTitle}</h1>
       <ul className={styles.episodeList}>
         {
-          formattedEps.map((ep) => (
-            <li key={ep.title} className={styles.episodeListItem} title={ep.title}>
-              <div className={styles.episodeButton}><i className={`fa ${playlistData.fonticon}`} aria-hidden="true" title={playlistData.title} onClick={() => playlistData.handler(ep)}></i></div>
+          formattedEps.map((ep, i) => (
+            <li key={`${i}-${ep.title}`} className={styles.episodeListItem} title={ep.title}>
+              <div className={styles.episodeButton}><i className={`fa ${playlistData.fonticon}`} aria-hidden="true" title={playlistData.title} onClick={() => playlistData.handler(props, ep)}></i></div>
               <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
                 {ep.title}
               </div>
@@ -35,12 +35,12 @@ function PodcastEpisodeList(props) {
   );
 }
 
-function addToPlaylist(ep){
-    console.log("addToPlaylist", ep)
+function addToPlaylist(props, ep){
+    props.addPodcastEpisodeToPlaylist(ep)
 }
 
-function deleteFromPlaylist(ep){
-    console.log("deleteFromPlaylist", ep)
+function deleteFromPlaylist(props, ep){
+    props.deletePodcastEpisodeFromPlaylist(ep)
 }
 
 function getAddToPlaylistData(){

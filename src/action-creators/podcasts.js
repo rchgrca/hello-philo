@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import { ADD_PODCASTS, LOAD_PODCAST_EPISODE } from '../actions';
+import { ADD_PODCASTS, LOAD_PODCAST_EPISODE,
+        ADD_TO_PLAYLIST, DELETE_FROM_PLAYLIST } from '../actions';
 
 const PODCAST_API_URL = '/api/podcasts';
 
@@ -21,6 +22,20 @@ export function getPodcasts() {
 export function loadPodcastEpisode(episode) {
   return {
     type: LOAD_PODCAST_EPISODE,
+    payload: episode,
+  };
+}
+
+export function addPodcastEpisodeToPlaylist(episode) {
+  return {
+    type: ADD_TO_PLAYLIST,
+    payload: episode,
+  };
+}
+
+export function deletePodcastEpisodeFromPlaylist(episode) {
+  return {
+    type: DELETE_FROM_PLAYLIST,
     payload: episode,
   };
 }
