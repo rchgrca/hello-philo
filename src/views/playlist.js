@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as podcastActions from '../action-creators/podcasts';
-import styles from '../styles/playlist';
+import styles from '../styles/podcast-episode-list.scss';
+import stylesPlaylist from '../styles/playlist.scss';
 
 function PlayList(props) {
   const { routeParams, playlist = {title: 'Playlist empty' } } = props;
@@ -13,12 +14,11 @@ function PlayList(props) {
        return playlist[episode]
   });
 
-  const playlistData = (true) ? getAddToPlaylistData() : getDeleteFromPlaylistData();
-
-
+  const playlistData = (false) ? getAddToPlaylistData() : getDeleteFromPlaylistData();
 
   return (
     <div className={styles.episodeListContainer}>
+      <h1>Playlist</h1>
       <ul className={styles.episodeList}>
         {
           formattedEps.map((ep, i) => (
@@ -27,6 +27,7 @@ function PlayList(props) {
               <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
                 {ep.title}
               </div>
+              <div className={stylesPlaylist.episodePodcast}>from podcast: {ep.podcastId}</div>
             </li>
           ))
         }
