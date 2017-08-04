@@ -5,22 +5,20 @@ import * as podcastActions from '../action-creators/podcasts';
 import styles from '../styles/playlist';
 
 function PlayList(props) {
-  const { title: [podcastTitle = ''] = [], item: episodes = [], routeParams, playlist = [] } = props;
+  const { routeParams, playlist = {title: 'Playlist empty' } } = props;
 
-  const formattedEps = playlist.map(({ enclosure, title: [title] }) => ({
-    podcastTitle,
-    title,
-    src: enclosure[0].$.url,
-    podcastId: routeParams.podcastId,
-  }));
+  const episodes = Object.keys(playlist);
+
+  const formattedEps = episodes.map((episode) => {
+       return playlist[episode]
+  });
 
   const playlistData = (true) ? getAddToPlaylistData() : getDeleteFromPlaylistData();
 
-  console.log("PLAYLIST.props", props)
+
 
   return (
     <div className={styles.episodeListContainer}>
-      <h1>{podcastTitle}</h1>
       <ul className={styles.episodeList}>
         {
           formattedEps.map((ep, i) => (
@@ -65,8 +63,7 @@ PlayList.propTypes = {
   loadPodcastEpisode: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, { routeParams }) => state.playlist || {};
-//const mapStateToProps = ({ playlist }) => ({ playlist });
+const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => bindActionCreators(podcastActions, dispatch);
 
 export default connect(
