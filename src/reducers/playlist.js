@@ -9,7 +9,7 @@ const deleteEpisode = (state, { payload }) => {
   // remove episode by filtering array, then convert it back to an object
   const filteredtempState = tempStateEntries
     .filter(episode => episode[0] !== payload.title)
-    .map(episode => ({ [episode[0]]: episode[1] }));
+    .reduce((obj, episode) => { obj[episode[0]] = episode[1]; return obj; }, {});
   return {
     ...filteredtempState,
   };
