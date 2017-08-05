@@ -48,7 +48,7 @@ function PlayList(props) {
           formattedEps.map((ep, i) => (
             <li key={`${i}-${ep.title}`} className={styles.episodeListItem} title={ep.title}>
               <div className={styles.episodeButton}>
-                <i className={`fa ${playlistData.fonticon}`} title={playlistData.title} onClick={() => playlistData.handler(props, ep)}></i>
+                <i className={`fa ${playlistData.fonticon}`} title={playlistData.title} onClick={() => playlistData.handler(props, ep)} />
               </div>
               <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
                 {ep.title}
