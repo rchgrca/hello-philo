@@ -3,9 +3,9 @@ import { Link } from 'react-router';
 import styles from '../styles/podcast-list-item';
 
 function PodcastListItem(props) {
-  const { title, slug, image = [], 'itunes:image': itunesImage } = props;
-  const imgSrc = image[0] ? image[0].url : itunesImage[0].$.href;
-  const imgAlt = image[0] ? image[0].title : props.slug;
+  const { title, slug, image = [], 'itunes:image': iTunesImage } = props;
+  const imgSrc = image[0] ? image[0].url : iTunesImage[0].$.href;
+  const imgAlt = image[0] ? image[0].title : slug;
 
   return (
     <li className={styles.podcastListItem} >
@@ -20,6 +20,7 @@ PodcastListItem.propTypes = {
   title: PropTypes.array,
   slug: PropTypes.string,
   image: PropTypes.array,
+  'itunes:image': PropTypes.array,
 };
 
 export default PodcastListItem;
