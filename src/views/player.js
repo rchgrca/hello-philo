@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as playerActions from '../action-creators/player';
 import { Link } from 'react-router';
+import * as playerActions from '../action-creators/player';
 import styles from '../styles/player';
 
 function Player(props) {
@@ -15,7 +15,7 @@ function Player(props) {
       <div className={styles.player}>
         <div className={styles.playerNowPlaying}>{podcastTitle} - {title}</div>
         {audioEl}
-        <Link to={`/playlist`}>Playlist</Link>
+        <Link to={'/playlist'}>Playlist</Link>
       </div>
     </div>
   );
