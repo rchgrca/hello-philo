@@ -9,7 +9,7 @@ import stylesPlaylist from '../styles/playlist.scss';
 function PlayList(props) {
 
   const oEmptyPlaylist = {
-      "Playlist Empty":{
+      'Playlist Empty':{
           podcastId:'',
           podcastTitle:'',
           src:'',
@@ -36,7 +36,7 @@ function PlayList(props) {
         {
           formattedEps.map((ep, i) => (
             <li key={`${i}-${ep.title}`} className={styles.episodeListItem} title={ep.title}>
-              <div className={styles.episodeButton}><i className={`fa ${playlistData.fonticon}`} aria-hidden="true" title={playlistData.title} onClick={() => playlistData.handler(props, ep)}></i></div>
+              <div className={styles.episodeButton}><i className={`fa ${playlistData.fonticon}`} title={playlistData.title} onClick={() => playlistData.handler(props, ep)}></i></div>
               <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
                 {ep.title}
               </div>
@@ -59,16 +59,16 @@ function deleteFromPlaylist(props, ep){
 
 function getAddToPlaylistData(){
     return {
-        fonticon: "fa-plus-square",
-        title: "Add to playlist",
+        fonticon: 'fa-plus-square',
+        title: 'Add to playlist',
         handler: addToPlaylist
     }
 }
 
 function getDeleteFromPlaylistData(){
     return {
-        fonticon: "fa-minus-square",
-        title: "Delete from playlist",
+        fonticon: 'fa-minus-square',
+        title: 'Delete from playlist',
         handler: deleteFromPlaylist
     }
 }
