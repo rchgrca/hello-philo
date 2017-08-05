@@ -9,9 +9,5 @@ export function createReducer(initialState, handlers) {
 }
 
 export function isEmpty(obj) {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
+  return Object.keys(obj).length === 0;
 }
