@@ -15,7 +15,7 @@ function Player(props) {
       <div className={styles.player}>
         <div className={styles.playerNowPlaying}>{podcastTitle} - {title}</div>
         {audioEl}
-        <Link to={'/playlist'}>Playlist</Link>
+        <div><Link to={'/playlist'}>Playlist</Link></div>
       </div>
     </div>
   );
