@@ -7,3 +7,11 @@ export function createReducer(initialState, handlers) {
     return state;
   };
 }
+
+export function isEmpty(obj) {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
