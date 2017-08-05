@@ -4,17 +4,15 @@ import { createReducer } from '../utils';
 const addEpisode = (state, { payload }) => ({ ...state, [payload.title]:payload });
 
 const deleteEpisode = (state, { payload }) => {
-    const tempState = { ...state };
-    const tempStateEntries = Object.entries(tempState);
-    const filteredtempStateArray = tempStateEntries.filter((episode) => {
+    const tempStateEntries = Object.entries({...state});
+    const filteredtempState = tempStateEntries.filter((episode) => {
         return episode[0] !== payload.title;
-    });
-    const filteredtempStateObject = filteredtempStateArray.reduce((obj, episode) => {
-     obj[episode[0]] = episode[1]
-     return obj
+    }).reduce((obj, episode) => {
+        obj[episode[0]] = episode[1]
+        return obj
     },{});
     return {
-        ...filteredtempStateObject
+        ...filteredtempState
     }
 }
 
