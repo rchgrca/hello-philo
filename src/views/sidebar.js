@@ -13,7 +13,6 @@ function Sidebar() {
   const navComponent = navSections.map(([iconKey, Icon, text]) => (
     <li key={iconKey} className={classNames([styles.sidebarNavItem, styles[`navItem${iconKey}`]])}>
       <Link to={`/${iconKey}`}>{Icon}{text}</Link>
-      <Link to={`/playlist`}>Playlist</Link>
     </li>
   ));
 
