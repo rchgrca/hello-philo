@@ -9,11 +9,10 @@ const deleteEpisode = (state, { payload }) => {
     const filteredtempStateArray = tempStateEntries.filter((episode) => {
         return episode[0] !== payload.title;
     });
-    const filteredtempStateObject = {}
-    const filteredtempStateObjectCreator = filteredtempStateArray.map(episode => {
-        filteredtempStateObject[episode[0]] = episode[1];
-        return filteredtempStateObject;
-    });
+    const filteredtempStateObject = filteredtempStateArray.reduce((obj, episode) => {
+     obj[episode[0]] = episode[1]
+     return obj
+    },{});
     return {
         ...filteredtempStateObject
     }
