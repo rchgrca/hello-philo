@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 import * as podcastActions from '../action-creators/podcasts';
 import { isEmpty } from '../utils';
 import styles from '../styles/podcast-episode-list.scss';
@@ -38,7 +39,7 @@ function PlayList(props) {
 
   const playlistData = getDeleteFromPlaylistData();
 
-  const displayPodcast = (ep) => (ep.podcastId === '' ? '' : `from podcast: ${ep.podcastId}`);
+  const displayPodcast = (ep) => (ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>{ep.podcastId}</Link>);
 
   return (
     <div className={styles.episodeListContainer}>
