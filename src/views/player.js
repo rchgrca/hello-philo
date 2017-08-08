@@ -6,7 +6,9 @@ import * as playerActions from '../action-creators/player';
 import styles from '../styles/player';
 
 function Player(props) {
-  const { title, podcastTitle, src } = props;
+  const { player: {
+    title, podcastTitle, src
+  }, playlist } = props;
 
   const audioEl = src ? <audio src={src} controls autoPlay /> : null;
 
@@ -26,7 +28,7 @@ Player.propTypes = {
   src: PropTypes.string,
 };
 
-const mapStateToProps = ({ player }) => player;
+const mapStateToProps = (state) => state;
 const mapDispatchToProps = (dispatch) => bindActionCreators(playerActions, dispatch);
 
 export default connect(
