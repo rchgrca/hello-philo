@@ -4,8 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import * as podcastActions from '../action-creators/podcasts';
 import { isEmpty } from '../utils';
-import styles from '../styles/podcast-episode-list.scss';
-import stylesPlaylist from '../styles/playlist.scss';
+import styles from '../styles/playlist.scss';
 
 function deleteFromPlaylist(props, ep) {
   props.deletePodcastEpisodeFromPlaylist(ep);
@@ -44,7 +43,7 @@ function PlayList(props) {
   return (
     <div className={styles.episodeListContainer}>
       <h1>Playlist</h1>
-      <ul className={styles.episodeList}>
+      <ol className={styles.episodeList}>
         {
           formattedEps.map((ep, i) => (
             <li key={`${i}-${ep.title}`} className={styles.episodeListItem} title={ep.title}>
@@ -54,11 +53,11 @@ function PlayList(props) {
               <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
                 {ep.title}
               </div>
-              <div className={stylesPlaylist.episodePodcast}>{displayPodcast(ep)}</div>
+              <div className={styles.episodePodcast}>{displayPodcast(ep)}</div>
             </li>
           ))
         }
-      </ul>
+      </ol>
     </div>
   );
 }

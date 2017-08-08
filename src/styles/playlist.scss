@@ -1,5 +1,39 @@
+.episodeListContainer {
+  text-align: center;
+}
+
+.episodeList {
+  width: 100%;
+  height: 100%;
+  color: white;
+  margin: 0;
+  text-align: left;
+}
+
+.empty {
+  list-style: none;
+  cursor: none;
+}
+
+.episodeListItem {
+  padding: 2em;
+  color: white;
+  position: relative;
+}
+
 .episodePodcast {
     padding-left:20px;
     font-style: italic;
     color: white;
+}
+
+.episodeButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.episodeLink {
+  cursor: pointer;
 }
