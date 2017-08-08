@@ -20,23 +20,31 @@ function getDeleteFromPlaylistData() {
 
 function PlayList(props) {
   const oEmptyPlaylist = {
-    'Playlist Empty': {
+    'No Episodes Added': {
       podcastId: '',
       podcastTitle: '',
       src: '',
-      title: 'Playlist Empty',
+      title: 'No Episodes Added',
     },
   };
 
   const { playlist } = props;
 
-  const thisPlaylist = isEmpty(playlist) ? oEmptyPlaylist : playlist;
+  const isPlaylistEmpty = isEmpty(playlist);
+
+  const thisPlaylist = isPlaylistEmpty ? oEmptyPlaylist : playlist;
 
   const episodes = Object.keys(thisPlaylist);
 
   const formattedEps = episodes.map(episode => thisPlaylist[episode]);
 
   const playlistData = getDeleteFromPlaylistData();
+
+  const handlePlayEpisode = (ep) => {
+    if(!isPlaylistEmpty){
+      props.loadPodcastEpisode(ep);
+    }
+  }
 
   const displayPodcast = (ep) => (ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>podcast: {ep.podcastId}</Link>);
 
@@ -50,7 +58,7 @@ function PlayList(props) {
               <div className={styles.episodeButton}>
                 <i className={`fa ${playlistData.fonticon}`} title={playlistData.title} onClick={() => playlistData.handler(props, ep)} />
               </div>
-              <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
+              <div className={styles.episodeLink} onClick={() => handlePlayEpisode(ep)}>
                 {ep.title}
               </div>
               <div className={styles.episodePodcast}>{displayPodcast(ep)}</div>
