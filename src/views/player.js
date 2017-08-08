@@ -10,7 +10,16 @@ function Player(props) {
     title, podcastTitle, src
   }, playlist } = props;
 
-  const audioEl = src ? <audio src={src} controls autoPlay /> : null;
+  const aPlaylistTitles = Object.keys(playlist);
+  const getNextPlaylistTitle = () => {
+    return playlist[aPlaylistTitles[aPlaylistTitles.findIndex((element) => element === title) + 1]];
+  }
+
+  const handleEpisodeEnd = () => {
+    props.loadPodcastEpisode(getNextPlaylistTitle());
+  }
+
+  const audioEl = src ? <audio src={src} controls autoPlay onEnded={handleEpisodeEnd} /> : null;
 
   return (
     <div className={styles.playerContainer}>
