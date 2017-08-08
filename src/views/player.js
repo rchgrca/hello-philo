@@ -12,7 +12,9 @@ function Player(props) {
 
   const aPlaylistTitles = Object.keys(playlist);
   const getNextPlaylistTitle = () => {
-    return playlist[aPlaylistTitles[aPlaylistTitles.findIndex((element) => element === title) + 1]];
+    const nextIndex = aPlaylistTitles.findIndex((element) => element === title) + 1;
+    const index = nextIndex === aPlaylistTitles.length ? 0 : nextIndex;
+    return playlist[aPlaylistTitles[index]];
   }
 
   const handleEpisodeEnd = () => {
