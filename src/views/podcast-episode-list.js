@@ -20,7 +20,7 @@ function getAddToPlaylistData() {
 
 function PodcastEpisodeList(props) {
   const { title: [podcastTitle = ''] = [], item: episodes = [],
-    routeParams } = props;
+    routeParams, loadPodcastEpisode } = props;
 
   const formattedEps = episodes.map(({ enclosure, title: [title] }) => ({
     podcastTitle,
@@ -45,7 +45,7 @@ function PodcastEpisodeList(props) {
                 <div className={styles.iconContainer}>
                   <InfoIcon classNames={styles.icon} />
                 </div>
-                <div onClick={() => props.loadPodcastEpisode(ep)}>{ep.title}</div>
+                <div onClick={() => loadPodcastEpisode(ep)}>{ep.title}</div>
               </div>
             </li>
           ))
@@ -56,6 +56,9 @@ function PodcastEpisodeList(props) {
 }
 
 PodcastEpisodeList.propTypes = {
+  title: PropTypes.array,
+  item: PropTypes.array,
+  routeParams: PropTypes.object,
   loadPodcastEpisode: PropTypes.func.isRequired,
 };
 
