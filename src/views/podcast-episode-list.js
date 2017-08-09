@@ -49,7 +49,10 @@ PodcastEpisodeList.propTypes = {
   loadPodcastEpisode: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, { routeParams }) => state.podcasts[routeParams.podcastId] || {};
+const mapStateToProps = (state, { routeParams }) => ({
+  ...state, ...state.podcasts[routeParams.podcastId] || {},
+});
+
 const mapDispatchToProps = (dispatch) => bindActionCreators(podcastActions, dispatch);
 
 export default connect(
