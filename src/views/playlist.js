@@ -7,16 +7,8 @@ import { ClearIcon } from './icons';
 import { isEmpty } from '../utils';
 import styles from '../styles/playlist.scss';
 
-function deleteFromPlaylist(props, ep) {
+function handleDelete(props, ep) {
   props.deletePodcastEpisodeFromPlaylist(ep);
-}
-
-function getDeleteFromPlaylistData() {
-  return {
-    fonticon: 'fa-minus-square',
-    title: 'Delete from playlist',
-    handler: deleteFromPlaylist,
-  };
 }
 
 function PlayList(props) {
@@ -39,8 +31,6 @@ function PlayList(props) {
 
   const formattedEps = episodes.map(episode => thisPlaylist[episode]);
 
-  const playlistData = getDeleteFromPlaylistData();
-
   const episodeListCSS = isPlaylistEmpty ? styles.episodeListItemEmpty : styles.episodeListItem;
 
   const handlePlayEpisode = (ep) => {
@@ -49,7 +39,9 @@ function PlayList(props) {
     }
   };
 
-  const displayPodcast = (ep) => (ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>{ep.podcastId}</Link>);
+  const displayPodcast = (ep) => (
+    ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>{ep.podcastId}</Link>
+  );
 
   const displayClearIcon = () => (isPlaylistEmpty ? '' : <ClearIcon classNames={styles.icon} />);
 
@@ -61,7 +53,7 @@ function PlayList(props) {
           formattedEps.map((ep, i) => (
             <li key={`${i}-${ep.title}`} className={episodeListCSS} title={ep.title}>
               <div>
-                <div className={styles.iconContainer} onClick={() => playlistData.handler(props, ep)} title="Delete">
+                <div className={styles.iconContainer} onClick={() => handleDelete(props, ep)}>
                   {displayClearIcon()}
                 </div>
                 <div className={styles.episodeLink} onClick={() => handlePlayEpisode(ep)}>
