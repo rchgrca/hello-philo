@@ -50,7 +50,7 @@ function PlayList(props) {
 
   return (
     <div className={styles.episodeListContainer}>
-      <h1>Playlist</h1>
+      <h1 className={styles.episodePlaylistTitle}>Playlist</h1>
       <ol className={styles.episodeList}>
         {
           formattedEps.map((ep, i) => (
