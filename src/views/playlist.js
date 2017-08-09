@@ -30,7 +30,7 @@ function PlayList(props) {
 
   const { playlist } = props;
 
-  const isPlaylistEmpty = isEmpty(playlist) ? true : false;
+  const isPlaylistEmpty = isEmpty(playlist);
 
   const thisPlaylist = isPlaylistEmpty ? oEmptyPlaylist : playlist;
 
@@ -41,10 +41,10 @@ function PlayList(props) {
   const playlistData = getDeleteFromPlaylistData();
 
   const handlePlayEpisode = (ep) => {
-    if(!isPlaylistEmpty){
+    if (!isPlaylistEmpty) {
       props.loadPodcastEpisode(ep);
     }
-  }
+  };
 
   const displayPodcast = (ep) => (ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>podcast: {ep.podcastId}</Link>);
 
@@ -71,6 +71,7 @@ function PlayList(props) {
 }
 
 PlayList.propTypes = {
+  playlist: PropTypes.object,
   loadPodcastEpisode: PropTypes.func.isRequired,
 };
 
