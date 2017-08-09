@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import * as podcastActions from '../action-creators/podcasts';
-import { ClearIcon } from './icons';
+import { ClearIcon, LiveIcon } from './icons';
 import { isEmpty } from '../utils';
 import styles from '../styles/playlist.scss';
 
 function handleDelete(props, ep) {
   props.deletePodcastEpisodeFromPlaylist(ep);
+}
+
+function showLiveIcon(player, ep) {
+  return player.title !== ep.title ? '' : <LiveIcon classNames={styles.icon} />;
 }
 
 function PlayList(props) {
@@ -21,7 +25,7 @@ function PlayList(props) {
     },
   };
 
-  const { playlist, loadPodcastEpisode } = props;
+  const { playlist, loadPodcastEpisode, player } = props;
 
   const isPlaylistEmpty = isEmpty(playlist);
 
@@ -58,6 +62,7 @@ function PlayList(props) {
                 </div>
                 <div className={styles.episodeLink} onClick={() => handlePlayEpisode(ep)}>
                   {ep.title}
+                  {showLiveIcon(player, ep)}
                   <div className={styles.episodePodcast}>{displayPodcast(ep)}</div>
                 </div>
               </div>
@@ -71,6 +76,7 @@ function PlayList(props) {
 
 PlayList.propTypes = {
   playlist: PropTypes.object,
+  player: PropTypes.object,
   loadPodcastEpisode: PropTypes.func.isRequired,
 };
 
