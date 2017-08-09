@@ -10,9 +10,14 @@ function handleAdd(props, ep) {
   props.addPodcastEpisodeToPlaylist(ep);
 }
 
+function showAddIcon(playlist, ep) {
+  const episodes = Object.keys(playlist);
+  return episodes.includes(ep.title) ? '' : <SaveIcon classNames={styles.icon} />;
+}
+
 function PodcastEpisodeList(props) {
   const { title: [podcastTitle = ''] = [], item: episodes = [],
-    routeParams, loadPodcastEpisode } = props;
+    routeParams, loadPodcastEpisode, playlist } = props;
 
   const formattedEps = episodes.map(({ enclosure, title: [title] }) => ({
     podcastTitle,
@@ -30,7 +35,7 @@ function PodcastEpisodeList(props) {
             <li key={`${i}-${ep.title}`} className={styles.episodeListItem}>
               <div className={styles.episodeLink}>
                 <div className={styles.iconContainer} onClick={() => handleAdd(props, ep)}>
-                  <SaveIcon classNames={styles.icon} />
+                  {showAddIcon(playlist, ep)}
                 </div>
                 <div onClick={() => loadPodcastEpisode(ep)}>{ep.title}</div>
               </div>
@@ -46,6 +51,7 @@ PodcastEpisodeList.propTypes = {
   title: PropTypes.array,
   item: PropTypes.array,
   routeParams: PropTypes.object,
+  playlist: PropTypes.object,
   loadPodcastEpisode: PropTypes.func.isRequired,
 };
 
