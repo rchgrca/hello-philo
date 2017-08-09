@@ -20,11 +20,11 @@ function getDeleteFromPlaylistData() {
 
 function PlayList(props) {
   const oEmptyPlaylist = {
-    'Playlist Empty': {
+    'There are no episodes the queue': {
       podcastId: '',
       podcastTitle: '',
       src: '',
-      title: 'Playlist Empty',
+      title: 'There are no episodes the queue',
     },
   };
 
