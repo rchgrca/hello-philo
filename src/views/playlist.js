@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import * as podcastActions from '../action-creators/podcasts';
+import { ClearIcon } from './icons';
 import { isEmpty } from '../utils';
 import styles from '../styles/playlist.scss';
 
@@ -28,7 +29,7 @@ function PlayList(props) {
     },
   };
 
-  const { playlist } = props;
+  const { playlist, loadPodcastEpisode } = props;
 
   const isPlaylistEmpty = isEmpty(playlist);
 
@@ -44,11 +45,13 @@ function PlayList(props) {
 
   const handlePlayEpisode = (ep) => {
     if (!isPlaylistEmpty) {
-      props.loadPodcastEpisode(ep);
+      loadPodcastEpisode(ep);
     }
   };
 
-  const displayPodcast = (ep) => (ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>PODCAST: {ep.podcastId}</Link>);
+  const displayPodcast = (ep) => (ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>{ep.podcastId}</Link>);
+
+  const displayClearIcon = () => (isPlaylistEmpty ? '' : <ClearIcon classNames={styles.icon} />);
 
   return (
     <div className={styles.episodeListContainer}>
@@ -57,13 +60,15 @@ function PlayList(props) {
         {
           formattedEps.map((ep, i) => (
             <li key={`${i}-${ep.title}`} className={episodeListCSS} title={ep.title}>
-              <div className={styles.episodeButton}>
-                <i className={`fa ${playlistData.fonticon}`} title={playlistData.title} onClick={() => playlistData.handler(props, ep)} />
+              <div>
+                <div className={styles.iconContainer} onClick={() => playlistData.handler(props, ep)} title="Delete">
+                  {displayClearIcon()}
+                </div>
+                <div className={styles.episodeLink} onClick={() => handlePlayEpisode(ep)}>
+                  {ep.title}
+                  <div className={styles.episodePodcast}>{displayPodcast(ep)}</div>
+                </div>
               </div>
-              <div className={styles.episodeLink} onClick={() => handlePlayEpisode(ep)}>
-                {ep.title}
-              </div>
-              <div className={styles.episodePodcast}>{displayPodcast(ep)}</div>
             </li>
           ))
         }

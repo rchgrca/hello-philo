@@ -1,3 +1,5 @@
+@import 'variables';
+
 .episodeListContainer {
   text-align: center;
 }
@@ -27,16 +29,10 @@
 }
 
 .episodePodcast {
-  padding-top: 0.5em;
+  padding-left: 1.5em;
+  padding-top: 1em;
   font-style: italic;
   color: white;
-}
-
-.episodeButton {
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
 }
 
 .episodeLink {
@@ -45,4 +41,18 @@
 
 .episodePlaylistTitle {
   margin: 0 0 1em;
+}
+
+.iconContainer {
+  float: left;
+  cursor: pointer;
+}
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: $philo-blue;
+  margin-right: 0.5em;
+  position: relative;
+  top: 2px;
 }
