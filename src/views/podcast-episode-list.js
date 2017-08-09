@@ -2,7 +2,9 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as podcastActions from '../action-creators/podcasts';
+import { InfoIcon } from './icons';
 import styles from '../styles/podcast-episode-list';
+
 
 function addToPlaylist(props, ep) {
   props.addPodcastEpisodeToPlaylist(ep);
@@ -39,8 +41,11 @@ function PodcastEpisodeList(props) {
               <div className={styles.episodeButton}>
                 <i className={`fa ${playlistData.fonticon}`} title={playlistData.title} onClick={() => playlistData.handler(props, ep)} />
               </div>
-              <div className={styles.episodeLink} onClick={() => props.loadPodcastEpisode(ep)}>
-                {ep.title}
+              <div className={styles.episodeLink}>
+                <div className={styles.iconContainer}>
+                  <InfoIcon classNames={styles.icon} />
+                </div>
+                <div onClick={() => props.loadPodcastEpisode(ep)}>{ep.title}</div>
               </div>
             </li>
           ))
