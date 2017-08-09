@@ -46,7 +46,7 @@ function PlayList(props) {
     }
   };
 
-  const displayPodcast = (ep) => (ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>podcast: {ep.podcastId}</Link>);
+  const displayPodcast = (ep) => (ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>PODCAST: {ep.podcastId}</Link>);
 
   return (
     <div className={styles.episodeListContainer}>

@@ -32,7 +32,7 @@ function PodcastEpisodeList(props) {
   return (
     <div className={styles.episodeListContainer}>
       <h1 className={styles.episodePodcastTitle}>{podcastTitle}</h1>
-      <ul className={styles.episodeList}>
+      <ol className={styles.episodeList}>
         {
           formattedEps.map((ep, i) => (
             <li key={`${i}-${ep.title}`} className={styles.episodeListItem} title={ep.title}>
@@ -45,7 +45,7 @@ function PodcastEpisodeList(props) {
             </li>
           ))
         }
-      </ul>
+      </ol>
     </div>
   );
 }
