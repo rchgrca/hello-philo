@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import styles from '../styles/app';
-import Sidebar from './sidebar';
 import Player from './player';
 import { LogoIcon } from './icons';
 
