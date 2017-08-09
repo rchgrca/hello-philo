@@ -9,11 +9,14 @@ function PodcastList(props) {
   const { podcasts = [] } = props;
   const titles = Object.keys(podcasts);
   return (
-    <ul className={styles.podcastList}>
-      {
-        titles.map(title => <Podcast key={title} {...podcasts[title]} />)
-      }
-    </ul>
+    <div>
+      <h1 className={styles.podcastTitle}>Podcasts</h1>
+      <ul className={styles.podcastList}>
+        {
+          titles.map(title => <Podcast key={title} {...podcasts[title]} />)
+        }
+      </ul>
+    </div>
   );
 }
 PodcastList.propTypes = {
