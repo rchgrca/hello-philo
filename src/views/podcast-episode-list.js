@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as podcastActions from '../action-creators/podcasts';
-import { SaveIcon } from './icons';
+import { SaveIcon, LiveIcon } from './icons';
 import styles from '../styles/podcast-episode-list';
 
 
@@ -15,9 +15,13 @@ function showAddIcon(playlist, ep) {
   return episodes.includes(ep.title) ? '' : <SaveIcon classNames={styles.icon} />;
 }
 
+function showLiveIcon(player, ep) {
+  return player.title !== ep.title ? '' : <LiveIcon classNames={styles.icon} />;
+}
+
 function PodcastEpisodeList(props) {
   const { title: [podcastTitle = ''] = [], item: episodes = [],
-    routeParams, loadPodcastEpisode, playlist } = props;
+    routeParams, loadPodcastEpisode, playlist, player } = props;
 
   const formattedEps = episodes.map(({ enclosure, title: [title] }) => ({
     podcastTitle,
@@ -37,7 +41,10 @@ function PodcastEpisodeList(props) {
                 <div className={styles.iconContainer} onClick={() => handleAdd(props, ep)}>
                   {showAddIcon(playlist, ep)}
                 </div>
-                <div onClick={() => loadPodcastEpisode(ep)}>{ep.title}</div>
+                <div onClick={() => loadPodcastEpisode(ep)}>
+                  {ep.title}
+                  {showLiveIcon(player, ep)}
+                </div>
               </div>
             </li>
           ))
@@ -52,6 +59,7 @@ PodcastEpisodeList.propTypes = {
   item: PropTypes.array,
   routeParams: PropTypes.object,
   playlist: PropTypes.object,
+  player: PropTypes.object,
   loadPodcastEpisode: PropTypes.func.isRequired,
 };
 
