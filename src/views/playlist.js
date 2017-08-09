@@ -20,11 +20,11 @@ function getDeleteFromPlaylistData() {
 
 function PlayList(props) {
   const oEmptyPlaylist = {
-    'There are no episodes the queue': {
+    'There are no episodes in the queue': {
       podcastId: '',
       podcastTitle: '',
       src: '',
-      title: 'There are no episodes the queue',
+      title: 'There are no episodes in the queue',
     },
   };
 
@@ -40,6 +40,8 @@ function PlayList(props) {
 
   const playlistData = getDeleteFromPlaylistData();
 
+  const episodeListCSS = isPlaylistEmpty ? styles.episodeListItemEmpty : styles.episodeListItem;
+
   const handlePlayEpisode = (ep) => {
     if (!isPlaylistEmpty) {
       props.loadPodcastEpisode(ep);
@@ -54,7 +56,7 @@ function PlayList(props) {
       <ol className={styles.episodeList}>
         {
           formattedEps.map((ep, i) => (
-            <li key={`${i}-${ep.title}`} className={styles.episodeListItem} title={ep.title}>
+            <li key={`${i}-${ep.title}`} className={episodeListCSS} title={ep.title}>
               <div className={styles.episodeButton}>
                 <i className={`fa ${playlistData.fonticon}`} title={playlistData.title} onClick={() => playlistData.handler(props, ep)} />
               </div>
