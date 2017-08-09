@@ -6,7 +6,12 @@ import * as playerActions from '../action-creators/player';
 import styles from '../styles/player';
 
 function Player(props) {
-  const { player: { title, podcastTitle, src }, playlist, loadPodcastEpisode } = props;
+  const { player: { title, podcastTitle, src }, playlist, loadPodcastEpisode,
+          routing: {
+            locationBeforeTransitions: {
+              pathname
+            }
+          }} = props;
 
   const aPlaylistTitles = Object.keys(playlist);
   const getNextPlaylistTitle = () => {
@@ -21,12 +26,14 @@ function Player(props) {
 
   const audioEl = src ? <audio src={src} controls autoPlay onEnded={handleEpisodeEnd} /> : null;
 
+  const displayPlaylistLink = pathname.includes('/playlist') ? '' : <Link to={'/playlist'}>Playlist</Link>;
+  
   return (
     <div className={styles.playerContainer}>
       <div className={styles.player}>
         <div className={styles.playerNowPlaying}>{podcastTitle} - {title}</div>
         {audioEl}
-        <div><Link to={'/playlist'}>Playlist</Link></div>
+        <div>{displayPlaylistLink}</div>
       </div>
     </div>
   );
