@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import * as podcastActions from '../action-creators/podcasts';
+import * as playlistActions from '../action-creators/playlist';
 import { ClearIcon, LiveIcon } from './icons';
 import { isEmpty } from '../utils';
 import styles from '../styles/playlist.scss';
@@ -81,7 +81,7 @@ PlayList.propTypes = {
 };
 
 const mapStateToProps = (state) => state;
-const mapDispatchToProps = (dispatch) => bindActionCreators(podcastActions, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators(playlistActions, dispatch);
 
 export default connect(
   mapStateToProps,
