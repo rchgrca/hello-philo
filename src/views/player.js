@@ -7,7 +7,7 @@ import { isEmpty } from '../utils';
 import styles from '../styles/player';
 
 function Player(props) {
-  const { player: { title = '', podcastTitle = '', src }, playlist, loadPodcastEpisode,
+  const { player: { title = '', src }, playlist, loadPodcastEpisode,
           routing: {
             locationBeforeTransitions: {
               pathname,
@@ -32,13 +32,9 @@ function Player(props) {
     }
   };
 
-  const podcastTitleEpisode = `${podcastTitle} - ${title}`;
-
   const showPlaylistLink = isPlaylistPage ? '' : <Link to={'/playlist'}>Playlist</Link>;
 
   const showAudio = src ? <audio src={src} controls autoPlay onEnded={handleEpisodeEnd} /> : null;
-
-  const showPodcastEpisodePlaying = title === '' && podcastTitle === '' ? '' : podcastTitleEpisode;
 
   return (
     <div className={styles.playerContainer}>
