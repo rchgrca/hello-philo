@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import * as playerActions from '../action-creators/player';
+import * as playerActions from '../action-creators/playlist';
 import { isEmpty } from '../utils';
 import styles from '../styles/player';
 
