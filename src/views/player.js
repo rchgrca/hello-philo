@@ -3,17 +3,23 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import * as playerActions from '../action-creators/player';
+import { isEmpty } from '../utils';
 import styles from '../styles/player';
 
 function Player(props) {
-  const { player: { title, podcastTitle, src }, playlist, loadPodcastEpisode,
+  const { player: { title = '', podcastTitle = '', src }, playlist, loadPodcastEpisode,
           routing: {
             locationBeforeTransitions: {
               pathname,
             },
           } } = props;
 
+  const isPlaylistEmpty = isEmpty(playlist);
+
+  const isPlaylistPage = pathname.includes('/playlist');
+
   const aPlaylistTitles = Object.keys(playlist);
+
   const getNextPlaylistTitle = () => {
     const nextIndex = aPlaylistTitles.findIndex((element) => element === title) + 1;
     const index = nextIndex === aPlaylistTitles.length ? 0 : nextIndex;
@@ -21,19 +27,25 @@ function Player(props) {
   };
 
   const handleEpisodeEnd = () => {
-    loadPodcastEpisode(getNextPlaylistTitle());
+    if (!isPlaylistEmpty) {
+      loadPodcastEpisode(getNextPlaylistTitle());
+    }
   };
 
-  const audioEl = src ? <audio src={src} controls autoPlay onEnded={handleEpisodeEnd} /> : null;
+  const podcastTitleEpisode = `${podcastTitle} - ${title}`;
 
-  const isPlaylist = pathname.includes('/playlist') ? '' : <Link to={'/playlist'}>Playlist</Link>;
+  const showPlaylistLink = isPlaylistPage ? '' : <Link to={'/playlist'}>Playlist</Link>;
+
+  const showAudio = src ? <audio src={src} controls autoPlay onEnded={handleEpisodeEnd} /> : null;
+
+  const showPodcastEpisodePlaying = title === '' && podcastTitle === '' ? '' : podcastTitleEpisode;
 
   return (
     <div className={styles.playerContainer}>
       <div className={styles.player}>
-        <div className={styles.playerNowPlaying}>{podcastTitle} - {title}</div>
-        {audioEl}
-        <div>{isPlaylist}</div>
+        <div className={styles.playerNowPlaying}>{showPodcastEpisodePlaying}</div>
+        {showAudio}
+        <div>{showPlaylistLink}</div>
       </div>
     </div>
   );
