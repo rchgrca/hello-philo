@@ -47,7 +47,7 @@ function PlayList(props) {
     ep.podcastId === '' ? '' : <Link to={`/${ep.podcastId}`}>{ep.podcastId}</Link>
   );
 
-  const displayClearIcon = () => (isPlaylistEmpty ? '' : <ClearIcon classNames={styles.icon} />);
+  const displayClearIcon = isPlaylistEmpty ? '' : <ClearIcon classNames={styles.icon} />;
 
   return (
     <div className={styles.episodeListContainer}>
@@ -58,7 +58,7 @@ function PlayList(props) {
             <li key={`${i}-${ep.title}`} className={episodeListCSS} title={ep.title}>
               <div>
                 <div className={styles.iconContainer} onClick={() => handleDelete(props, ep)}>
-                  {displayClearIcon()}
+                  {displayClearIcon}
                 </div>
                 <div className={styles.episodeLink} onClick={() => handlePlayEpisode(ep)}>
                   {ep.title}
