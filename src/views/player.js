@@ -43,7 +43,6 @@ function Player(props) {
   return (
     <div className={styles.playerContainer}>
       <div className={styles.player}>
-        <div className={styles.playerNowPlaying}>{showPodcastEpisodePlaying}</div>
         {showAudio}
         <div>{showPlaylistLink}</div>
       </div>
