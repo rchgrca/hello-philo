@@ -1,9 +1,7 @@
 * NOTE:
   * I love this way of assessing a developer's skill.  I also found this to be a
-    challenging and fun project.  The challenge for me was working with a
-    different Redux design pattern (i.e. createReducer()) and with stateless React components.  
-    The amount of learning achieved on this project was more than I anticipated.
-    It was fantastic!  The following describes what I created.
+    challenging and fun project.  It was fantastic!  
+    The following describes what I created.
 
 * FEATURES:
 
